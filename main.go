@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"net/http"
+
+	"github.com/nullablenone/toktoktok/domain/otp"
+	"github.com/nullablenone/toktoktok/routes"
+)
 
 func main() {
-	fmt.Println("hehehehhehehe")
+	OtpHandler := otp.NewHandler()
+
+	router := routes.SetupRoutes(OtpHandler)
+
+	http.ListenAndServe(":808", router)
 }
